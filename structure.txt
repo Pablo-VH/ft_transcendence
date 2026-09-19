@@ -1,7 +1,7 @@
-ft_pong-3d/                          # (o el nombre que le pongáis)
+ft_pong-3d/
 ├── docker-compose.yml               # orquesta todo el proyecto
 ├── .env                             # variables de entorno (NO subir a git)
-├── .env.example                     # plantilla de referencia para el equipo
+├── .env.example                     # plantilla de referencia
 ├── .gitignore
 ├── README.md
 ├── structure.txt
@@ -13,7 +13,7 @@ ft_pong-3d/                          # (o el nombre que le pongáis)
 │   ├── tsconfig.json
 │   ├── vite.config.ts
 │   ├── index.html
-│   ├── nginx.conf                   # solo si sirves el build con nginx
+│   ├── nginx.conf
 │   ├── public/
 │   │   └── assets/                  # texturas, modelos 3d, sonidos...
 │   └── src/
@@ -34,7 +34,7 @@ ft_pong-3d/                          # (o el nombre que le pongáis)
 │       │   │   └── api.ts            # llamadas REST al backend
 │       │   └── stores/
 │       │       └── gameStore.ts      # estado reactivo de Svelte
-│       └── routes/                   # si usáis SvelteKit
+│       └── routes/                   # si se usa SvelteKit
 │
 ├── backend/
 │   ├── Dockerfile
@@ -54,7 +54,7 @@ ft_pong-3d/                          # (o el nombre que le pongáis)
 │   │   │       └── 002_users.sql
 │   │   ├── game/
 │   │   │   ├── engine.go             # física/lógica del pong
-│   │   │   ├── room.go                # gestión de salas/partidas
+│   │   │   ├── room.go               # gestión de salas/partidas
 │   │   │   └── state.go
 │   │   ├── ws/
 │   │   │   └── hub.go                # gestor de conexiones WebSocket
@@ -72,10 +72,10 @@ ft_pong-3d/                          # (o el nombre que le pongáis)
 │   └── pkg/                          # utilidades reutilizables si aplica
 │
 ├── database/
-│   ├── Dockerfile                    # normalmente solo FROM mariadb + init scripts
+│   ├── Dockerfile
 │   └── init/
 │       └── 001_schema.sql            # se ejecuta al primer arranque del volumen
 │
-└── proxy/                            # opcional, si metéis nginx delante de todo
+└── proxy/                            # opcional, si metemos nginx delante de todo
     ├── Dockerfile
     └── nginx.conf
