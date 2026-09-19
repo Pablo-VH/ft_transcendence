@@ -1,0 +1,81 @@
+ft_pong-3d/                          # (o el nombre que le pongáis)
+├── docker-compose.yml               # orquesta todo el proyecto
+├── .env                             # variables de entorno (NO subir a git)
+├── .env.example                     # plantilla de referencia para el equipo
+├── .gitignore
+├── README.md
+├── structure.txt
+│
+├── frontend/
+│   ├── Dockerfile
+│   ├── .dockerignore
+│   ├── package.json
+│   ├── tsconfig.json
+│   ├── vite.config.ts
+│   ├── index.html
+│   ├── nginx.conf                   # solo si sirves el build con nginx
+│   ├── public/
+│   │   └── assets/                  # texturas, modelos 3d, sonidos...
+│   └── src/
+│       ├── main.ts
+│       ├── App.svelte
+│       ├── lib/
+│       │   ├── components/
+│       │   │   ├── GameCanvas.svelte
+│       │   │   ├── Menu.svelte
+│       │   │   └── Scoreboard.svelte
+│       │   ├── three/
+│       │   │   ├── scene.ts          # setup escena, cámara, luces
+│       │   │   ├── paddle.ts
+│       │   │   ├── ball.ts
+│       │   │   └── renderer.ts
+│       │   ├── network/
+│       │   │   ├── websocket.ts      # cliente WS
+│       │   │   └── api.ts            # llamadas REST al backend
+│       │   └── stores/
+│       │       └── gameStore.ts      # estado reactivo de Svelte
+│       └── routes/                   # si usáis SvelteKit
+│
+├── backend/
+│   ├── Dockerfile
+│   ├── .dockerignore
+│   ├── go.mod
+│   ├── go.sum
+│   ├── cmd/
+│   │   └── server/
+│   │       └── main.go               # entrypoint
+│   ├── internal/
+│   │   ├── config/
+│   │   │   └── config.go             # lectura de env vars
+│   │   ├── db/
+│   │   │   ├── db.go                 # conexión MariaDB
+│   │   │   └── migrations/
+│   │   │       ├── 001_init.sql
+│   │   │       └── 002_users.sql
+│   │   ├── game/
+│   │   │   ├── engine.go             # física/lógica del pong
+│   │   │   ├── room.go                # gestión de salas/partidas
+│   │   │   └── state.go
+│   │   ├── ws/
+│   │   │   └── hub.go                # gestor de conexiones WebSocket
+│   │   ├── api/
+│   │   │   ├── routes.go
+│   │   │   ├── handlers/
+│   │   │   │   ├── auth.go
+│   │   │   │   ├── users.go
+│   │   │   │   └── match.go
+│   │   │   └── middleware/
+│   │   │       └── auth.go
+│   │   └── models/
+│   │       ├── user.go
+│   │       └── match.go
+│   └── pkg/                          # utilidades reutilizables si aplica
+│
+├── database/
+│   ├── Dockerfile                    # normalmente solo FROM mariadb + init scripts
+│   └── init/
+│       └── 001_schema.sql            # se ejecuta al primer arranque del volumen
+│
+└── proxy/                            # opcional, si metéis nginx delante de todo
+    ├── Dockerfile
+    └── nginx.conf
